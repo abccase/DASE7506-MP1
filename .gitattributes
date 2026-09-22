@@ -1,0 +1,11 @@
+# Do not let git touch end-of-line bytes, on any platform.
+#
+# `code/data/*` is integrity-checked by SHA-256 against PACKAGE_MANIFEST.json, and `load_data()`
+# raises if a single byte differs. BPB also divides by each split's exact raw UTF-8 byte count
+# (test: 1,292,013 bytes), so an end-of-line conversion changes the recorded score itself.
+#
+# This matters in practice: with `core.autocrlf=true` -- the default on many Windows installs --
+# a clone rewrote every file to CRLF, which inflated wikitext_test.txt to 1,299,261 bytes and
+# made `check_integrity.py` report 13 problems. An explicit attribute takes precedence over
+# core.autocrlf, so `-text` here keeps every clone byte-identical to the released package.
+* -text
