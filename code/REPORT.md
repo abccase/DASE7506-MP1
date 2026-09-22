@@ -4,7 +4,7 @@
 **Student ID: 3036747264**
 **Recorded full-test BPB: 1.700525** (protocol `7506-mp1-wt2-v2`, CPU, FP32)
 
-*Length: about 4,650 words including 7 tables (roughly 4,000 words of prose), which renders
+*Length: about 4,750 words including 7 tables (roughly 4,100 words of prose), which renders
 inside the 10-page limit at a standard 11 pt single-column layout. The count is stated so a
 reader can check it rather than trust it.*
 
@@ -297,12 +297,11 @@ checkpoint derives from random initialisation and the supplied training text onl
 allocation was 0.77 GiB (`mhal7-s17-r12000`), so no candidate was rejected for cost, and
 training cost is not budget-capped — only disclosed.
 
-One measurement caveat, since the raw seconds are in the log: GPU seconds per token drift upward
-within a sustained session (1,250–1,400 ns/token for the shallow models early, 4,400–6,170 for
-the deep ones late), reflecting both the shape of the work — deep narrow models use the GPU far
-less efficiently than few wide layers — and thermal throttling on a laptop GPU. Training wall
-clock is therefore an upper bound and justifies no conclusion; every performance claim rests on
-BPB, which is scored on CPU.
+One caveat, since the raw seconds are in the log: GPU seconds per token drift upward within a
+sustained session (1,250–1,400 ns/token early, 4,400–6,170 late), reflecting both the shape of
+the work — deep narrow models use the GPU far less efficiently than few wide layers — and
+thermal throttling on a laptop GPU. Training wall clock is an upper bound and justifies no
+conclusion; every performance claim rests on BPB, scored on CPU.
 
 ---
 
@@ -435,12 +434,18 @@ python evaluate.py --checkpoint runs/w2-s17-r12000/checkpoint.pt \
 
 The last command reproduces **1.700525** BPB from `runs/w2-s17-r12000/test_cpu_fp32.json`.
 Expected environment: Python 3.12, PyTorch 2.7.1+cpu, `tokenizers==0.21.4` (the version must
-match or tokenisation may differ), 4 CPU threads. Retraining needs a GPU environment (PyTorch
-2.8.0+cu128, Python 3.10); the recipe for every run is in
-`specs/001-param-realloc-gqa/quickstart.md`, and the exact `--steps` and `--config` per run are
-recoverable from each `runs/*/metrics.json`. The submitted model is `student.py`, self-contained
-(PyTorch only; it does not import `model.py`), and `model.py` with `configs/baseline.json` is
-retained unchanged for the baseline comparison.
+match or tokenisation may differ), 4 CPU threads.
+
+Verified the way a reviewer would: a fresh `git clone` containing only the tracked files passes
+14/14 tests, `check_integrity.py` at 13/13, and reproduces 1.700525 bit-for-bit. `.gitattributes`
+pins `* -text` because the integrity check hashes bytes and BPB divides by exact UTF-8 byte
+counts: without it, a clone on a machine with `core.autocrlf=true` rewrote the splits to CRLF,
+inflating `wikitext_test.txt` from 1,292,013 to 1,299,261 bytes and breaking both.
+
+Retraining needs a GPU environment (PyTorch 2.8.0+cu128, Python 3.10); the recipe per run is in
+`specs/001-param-realloc-gqa/quickstart.md` and the exact `--steps`/`--config` are recoverable
+from each `runs/*/metrics.json`. `student.py` is self-contained (PyTorch only; it does not import
+`model.py`), and `model.py` with `configs/baseline.json` is kept unchanged for the baseline.
 
 Naming note: the specification directory `001-param-realloc-gqa` is historical — "gqa" referred
 to the first (falsified) mechanism. The submitted model uses standard multi-head attention.

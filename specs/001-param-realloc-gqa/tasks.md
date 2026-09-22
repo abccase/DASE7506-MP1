@@ -141,9 +141,10 @@
 
 **Purpose**: 提交所需的仓库形态与流程动作
 
-- [ ] T036 初始化 git 仓库并完成首次提交（当前项目根**尚不是** git 仓库，见 plan.md 风险 #8）
-- [ ] T037 [P] 编写 `code/README` 中的复现说明：精确安装、训练、评估命令与环境版本
-- [ ] T038 [P] 在报告中声明 AI 辅助范围（依 GUIDE 第 3 节要求）
+- [X] T036 初始化 git 仓库并完成首次提交（当前项目根**尚不是** git 仓库，见 plan.md 风险 #8）。**已完成**：`git init -b main`，首次提交 `6502143`。仓库范围经用户确认取"最小 + 报告引用文档"：`code/`、`specs/`、`GUIDE.md`、根级 `.gitignore`/`.gitattributes`；排除 `history/`、`.specify/`。**只保留冻结 checkpoint 一个**（45 个搜索副产物 checkpoint 199 MB 与 `*.window-nll.npy` 全部忽略）。因 `code/.gitignore` 是受完整性校验的课程文件（不可修改，且它忽略 `runs/` 与 `*.pt`），运行记录以 `git add -f` 显式加入
+- [X] T037 [P] 编写 `code/README` 中的复现说明：精确安装、训练、评估命令与环境版本。**已完成**：填入 §4 三项预算实测值、§5 两项提交清单（报告链接 + 复现说明），新增 §7「Submission record」含精确命令、成本、仓库纳排说明；并修复包被扁平化后失效的两处 `../guide/GUIDE.md` → `../GUIDE.md` 链接
+- [X] T038 [P] 在报告中声明 AI 辅助范围（依 GUIDE 第 3 节要求）。**已完成**：报告 §8 + README §7「AI assistance disclosure」（GUIDE 要求写在仓库 README）
+- [X] T047 [US3] **克隆级复现验证**（T037/T038 的验收）：全新 `git clone` 后仅凭被跟踪文件执行，14/14 测试通过、`check_integrity.py` 13/13 零问题、**复现 BPB 精确等于 1.700524654440853**。**过程中发现并修复一个真实缺陷**：本机 `core.autocrlf=true` 使克隆把 LF 转为 CRLF，`wikitext_test.txt` 从 1,292,013 膨胀到 1,299,261 字节，同时破坏哈希校验与 BPB 分母（BPB 以原始 UTF-8 字节数为分母）→ 新增根级 `.gitattributes` 钉住 `* -text`，提交 `b2c3f18`
 - [ ] T039 于 9 月 29 日前在课程网站提交学号与全测试 BPB，并完成生成的 GitHub issue；9 月 30 日前完成最终提交（不可变代码 + checkpoint bundle）
 
 ---
