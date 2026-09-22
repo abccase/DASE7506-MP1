@@ -1,0 +1,99 @@
+{
+  "protocol": "7506-mp1-wt2-v2",
+  "implementation": "student",
+  "config": {
+    "vocab": 2048,
+    "width": 172,
+    "heads": 4,
+    "depth": 2,
+    "context": 256,
+    "kv_heads": 4
+  },
+  "seed": 17,
+  "parameters": 1111120,
+  "precision": "bf16",
+  "train_tokens": 9830400,
+  "preparation_seconds": 11.734308400002192,
+  "train_seconds": 25.90969810000024,
+  "validation": {
+    "bpb": 1.9984194623075184,
+    "token_ppl": 68.20897134737663,
+    "nll_nats": 1590217.9370157272,
+    "targets": 376599,
+    "utf8_bytes": 1148007,
+    "seconds": 0.7140739999995276
+  },
+  "history": [
+    {
+      "step": 100,
+      "loss": 5.746054649353027,
+      "seconds": 2.4669701000020723
+    },
+    {
+      "step": 200,
+      "loss": 4.981534957885742,
+      "seconds": 4.542841200000112
+    },
+    {
+      "step": 300,
+      "loss": 4.75380802154541,
+      "seconds": 6.680396200001269
+    },
+    {
+      "step": 400,
+      "loss": 4.523526191711426,
+      "seconds": 8.85928789999889
+    },
+    {
+      "step": 500,
+      "loss": 4.517360210418701,
+      "seconds": 11.00446010000087
+    },
+    {
+      "step": 600,
+      "loss": 4.3658366203308105,
+      "seconds": 13.121572800002468
+    },
+    {
+      "step": 700,
+      "loss": 4.259906768798828,
+      "seconds": 15.208186100000603
+    },
+    {
+      "step": 800,
+      "loss": 4.283262252807617,
+      "seconds": 17.30532669999957
+    },
+    {
+      "step": 900,
+      "loss": 4.188145160675049,
+      "seconds": 19.491027700001723
+    },
+    {
+      "step": 1000,
+      "loss": 4.172487258911133,
+      "seconds": 21.627237000000605
+    },
+    {
+      "step": 1100,
+      "loss": 4.102082252502441,
+      "seconds": 23.721536600001855
+    },
+    {
+      "step": 1200,
+      "loss": 4.11462926864624,
+      "seconds": 25.90953260000242
+    }
+  ],
+  "validation_history": [],
+  "intermediate_validation_seconds": 0.0,
+  "process_seconds": 38.482241099998646,
+  "torch_version": "2.8.0+cu128",
+  "threads": 4,
+  "checkpoint_sha256": "15e10f627eb4e03bdaf96082624d8f454f99c685d5f6880f7b6773f24e870a21",
+  "implementation_sha256": "9a08cff587b5e8eb3943828b46a5761b50a4b72a5629747c8256adc221ba4835",
+  "device": "cuda:0",
+  "device_name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+  "peak_allocated_gb": 0.468813824,
+  "peak_reserved_gb": 0.528482304
+}

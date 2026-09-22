@@ -1,0 +1,8 @@
+{
+  "vocab": 2048,
+  "width": 144,
+  "heads": 4,
+  "depth": 3,
+  "context": 256,
+  "kv_heads": 4
+}
