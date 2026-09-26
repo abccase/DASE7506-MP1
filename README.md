@@ -326,8 +326,12 @@ and `check_integrity.py` re-verifies their hashes.
 
 The three files this project did change are `student.py` (the submitted model factory), `train.py`
 (the two opt-in switches, whose defaults reproduce the supplied recipe exactly) and the repository
-documentation. The supplied `code/README.md` was superseded by this document and is kept only as a
-pointer, because [GUIDE.md](GUIDE.md) links to it.
+documentation. The supplied `code/README.md` was superseded by this document and has been deleted,
+so that the repository has a single documentation entry point; its content lives in §1–§4, §8, §10
+and §11 below. [GUIDE.md](GUIDE.md) names that path, but its own link to it was already stale,
+because the guide sits at the repository root after the package was flattened and `../code/`
+therefore resolves outside the repository. GUIDE.md is supplied documentation and was left
+unmodified.
 
 ## 11. Data attribution
 
