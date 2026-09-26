@@ -56,8 +56,11 @@ evaluation budget, under the supplied protocol `7506-mp1-wt2-v2`:
 protocol files matching**. Two mutable files changed. `train.py` gained two opt-in switches
 (`--weight-decay-1d`, `--ema-decay`) whose defaults reproduce the supplied recipe exactly — a
 control run gives 1.943105 against 1.943087 and 1.943094 for two pre-edit re-runs of the same
-seed. `README.md` had its blank budget and submission lines filled in and the required AI
-disclosure added. No other file was touched.
+seed. The documentation was consolidated: the supplied `code/README.md` was merged into a single
+repository-level `README.md` carrying the installation steps, the protocol rules, the measured
+budgets, the reproduction instructions and the AI-assistance disclosure required by GUIDE §3,
+leaving `code/README.md` as a pointer because the guide links to it. No other file was touched,
+and `check_integrity.py` treats `code/README.md` as mutable, so the 13 gated files are unaffected.
 
 ---
 
