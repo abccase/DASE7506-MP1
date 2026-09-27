@@ -248,14 +248,23 @@ inference assets:
 | `requirements.txt` | `code/requirements.txt` |
 | `MANIFEST.sha256`, `README.md` | Written at build time |
 
-`DASE7506-MP1-checkpoint-bundle.zip` — zip sha256
-`642b361a7bda2cba1fe88e84b9210f207ed1a83bf7e6d71e060cc890acdd59a8`, 3.79 MiB.
+**Download:** [Releases — v1.0](https://github.com/abccase/DASE7506-MP1/releases/tag/v1.0), asset
+`DASE7506-MP1-checkpoint-bundle.zip`.
 
-Checkpoint sha256 `355318877465ecc4e74bc39bb197baea64fa85044751ceb25eb22e90c855fc55`, which is the
-value recorded in `runs/w2-s17-r12000/metrics.json`. Every payload file is byte-identical to its
-repository counterpart, the bundle verifies against its own `MANIFEST.sha256`, and scoring the
-bundle's checkpoint with this repository's evaluator reproduces 1.700525 exactly. The archive is
-byte-reproducible: rebuilding it from the same inputs yields the same sha256.
+| Hash | Value |
+|---|---|
+| `DASE7506-MP1-checkpoint-bundle.zip` | `642b361a7bda2cba1fe88e84b9210f207ed1a83bf7e6d71e060cc890acdd59a8` |
+| `checkpoint.pt` (inside the bundle and in `runs/w2-s17-r12000/`) | `355318877465ecc4e74bc39bb197baea64fa85044751ceb25eb22e90c855fc55` |
+
+The checkpoint hash is the value recorded in `runs/w2-s17-r12000/metrics.json`. Every payload file
+is byte-identical to its repository counterpart, the bundle verifies against its own
+`MANIFEST.sha256`, and the archive is byte-reproducible: rebuilding it from the same inputs yields
+the same sha256.
+
+Verified end to end against the published copies: cloning the repository from GitHub yields 13/13
+byte-identical protocol files, 14/14 tests and `check_integrity.py` at 13/13, and reproduces
+1.700525; downloading the release asset back from GitHub gives the zip hash above, a manifest that
+verifies 4/4, and a checkpoint that scores 1.700525 exactly.
 
 ## 7. Cost
 
